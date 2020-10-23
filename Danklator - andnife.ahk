@@ -1,4 +1,4 @@
-ComObjCreate("SAPI.SpVoice").Speak("Utiliza control mas F11 para cambiar entre idiomas, escribe tu texto y presiona control enter para mandarlo traducido automaticamente.")
+msgbox, Utiliza CTRL + F11 para cambiar entre idiomas, escribe tu texto y presiona CTRL + enter para mandarlo traducido automaticamente. CTRL + F12 para escuchar el idioma seleccionado. ALT + F12 para traducir el texto seleccionado a castellano.
 a:=0
 language = pt
 
@@ -13,6 +13,15 @@ newstring := GoogleTranslate(clipboard, , language)
 send %newstring%
 sleep 50
 send {enter}
+newstring := ""
+return
+
+!F12::
+clipboard := ""
+sleep 50
+send ^c
+translation := GoogleTranslate(clipboard, , "es")
+msgbox, %translation%
 return
 
 ^F12::
