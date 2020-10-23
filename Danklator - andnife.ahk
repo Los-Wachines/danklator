@@ -1,4 +1,4 @@
-msgbox, Utiliza CTRL + F11 para cambiar entre idiomas, escribe tu texto y presiona CTRL + enter para mandarlo traducido automaticamente. CTRL + F12 para escuchar el idioma seleccionado. ALT + F12 para traducir el texto seleccionado a castellano.
+msgbox, CTRL + F11: cambia entre idiomas.`nCTRL + F12: escucha el idioma seleccionado.`n`nALT + Enter: traduce el texto seleccionado.`nCTRL + Enter: traduce y envia el texto escrito automaticamente.`n`nALT + F12: traduce el texto seleccionado a castellano.
 a:=0
 language = pt
 
@@ -13,6 +13,15 @@ newstring := GoogleTranslate(clipboard, , language)
 send %newstring%
 sleep 50
 send {enter}
+newstring := ""
+return
+
+!enter::
+clipboard := ""
+send ^c
+sleep 50
+newstring := GoogleTranslate(clipboard, , language)
+send %newstring%
 newstring := ""
 return
 
