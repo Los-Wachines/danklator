@@ -21,7 +21,7 @@ clipboard := ""
 sleep 50
 send ^c
 translation := GoogleTranslate(clipboard, , "es")
-msgbox, %translation%
+msgbox, TRADUCCION: %translation%
 return
 
 ^F12::
@@ -41,11 +41,19 @@ switch a
 		ComObjCreate("SAPI.SpVoice").Speak("Coreano")
 	case 6:
 		ComObjCreate("SAPI.SpVoice").Speak("Rumano")
+	case 7:
+		ComObjCreate("SAPI.SpVoice").Speak("Amarico")
+	case 8:
+		ComObjCreate("SAPI.SpVoice").Speak("Frances")
+	case 9:
+		ComObjCreate("SAPI.SpVoice").Speak("Suajili")
+	case 10:
+		ComObjCreate("SAPI.SpVoice").Speak("Ingles")
 }
 return
 
 ^F11::
-if (a=6)
+if (a=10)
 	a:=-1
 a:= a+1
 switch a
@@ -63,7 +71,7 @@ switch a
 		tooltip, Ruso
 		settimer, removetooltip, -500
 	case 3:
-		language = ger
+		language = de
 		tooltip, Aleman
 		settimer, removetooltip, -500
 	case 4:
@@ -77,6 +85,22 @@ switch a
 	case 6:
 		language = ro
 		tooltip, Rumano
+		settimer, removetooltip, -500
+	case 7:
+		language = am
+		tooltip, Amarico
+		settimer, removetooltip, -500
+	case 8:
+		language = fr
+		tooltip, Frances
+		settimer, removetooltip, -500
+	case 9:
+		language = sw
+		tooltip, Suajili
+		settimer, removetooltip, -500
+	case 10:
+		language = en
+		tooltip, Ingles
 		settimer, removetooltip, -500
 }
 return
