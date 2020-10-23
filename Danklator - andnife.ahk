@@ -3,6 +3,7 @@ a:=0
 language = pt
 
 ^enter::
+clipboard := ""
 sleep 100
 send ^a
 sleep 50
@@ -14,8 +15,28 @@ sleep 50
 send {enter}
 return
 
+^F12::
+switch a
+{
+	case 0:
+		ComObjCreate("SAPI.SpVoice").Speak("Portugues")
+	case 1:
+		ComObjCreate("SAPI.SpVoice").Speak("Arabe")
+	case 2:
+		ComObjCreate("SAPI.SpVoice").Speak("Ruso")
+	case 3:
+		ComObjCreate("SAPI.SpVoice").Speak("Aleman")
+	case 4:
+		ComObjCreate("SAPI.SpVoice").Speak("Japones")
+	case 5:
+		ComObjCreate("SAPI.SpVoice").Speak("Coreano")
+	case 6:
+		ComObjCreate("SAPI.SpVoice").Speak("Rumano")
+}
+return
+
 ^F11::
-if (a=3)
+if (a=6)
 	a:=-1
 a:= a+1
 switch a
@@ -23,29 +44,39 @@ switch a
 	case 0:
 		language = pt
 		tooltip, Portugues
-		settimer, removetooltip, -1000
-		ComObjCreate("SAPI.SpVoice").Speak("Portugues")
+		settimer, removetooltip, -500
 	case 1:
 		language = ar
 		tooltip, Arabe
-		settimer, removetooltip, -1000
-		ComObjCreate("SAPI.SpVoice").Speak("Arabe")
+		settimer, removetooltip, -500
 	case 2:
 		language = ru
 		tooltip, Ruso
-		settimer, removetooltip, -1000
-		ComObjCreate("SAPI.SpVoice").Speak("Ruso")
+		settimer, removetooltip, -500
 	case 3:
 		language = ger
 		tooltip, Aleman
-		settimer, removetooltip, -1000
-		ComObjCreate("SAPI.SpVoice").Speak("Aleman")
+		settimer, removetooltip, -500
+	case 4:
+		language = ja
+		tooltip, Japones
+		settimer, removetooltip, -500
+	case 5:
+		language = ko
+		tooltip, Coreano
+		settimer, removetooltip, -500
+	case 6:
+		language = ro
+		tooltip, Rumano
+		settimer, removetooltip, -500
 }
 return
 
 removetooltip:
 tooltip
 return
+
+ ; https://cloud.google.com/translate/docs/languages
 
 GoogleTranslate(str, from := "auto", to := "en")  {
    static JS := CreateScriptObj(), _ := JS.( GetJScript() ) := JS.("delete ActiveXObject; delete GetObject;")
